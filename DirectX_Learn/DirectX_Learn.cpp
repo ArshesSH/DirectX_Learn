@@ -4,18 +4,23 @@
 #include "framework.h"
 #include "DirectX_Learn.h"
 
+#include <memory>
+
+#include "MainGame.h"
+
 #define MAX_LOADSTRING 100
 
-// 전역 변수:
 HINSTANCE hInst;                                // 현재 인스턴스입니다.
 WCHAR szTitle[MAX_LOADSTRING];                  // 제목 표시줄 텍스트입니다.
 WCHAR szWindowClass[MAX_LOADSTRING];            // 기본 창 클래스 이름입니다.
 
-// 이 코드 모듈에 포함된 함수의 선언을 전달합니다:
 ATOM                MyRegisterClass(HINSTANCE hInstance);
 BOOL                InitInstance(HINSTANCE, int);
 LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
 INT_PTR CALLBACK    About(HWND, UINT, WPARAM, LPARAM);
+
+std::unique_ptr<MainGame> pMainGame;
+HWND g_hWnd;
 
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
                      _In_opt_ HINSTANCE hPrevInstance,
@@ -40,18 +45,37 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
     HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_DIRECTXLEARN));
 
+
+    pMainGame = std::make_unique<MainGame>();
+    if ( pMainGame == nullptr )
+    {
+        return false;
+    }
+    pMainGame->Setup();
+
     MSG msg;
 
     // 기본 메시지 루프입니다:
-    while (GetMessage(&msg, nullptr, 0, 0))
+    while (true)
     {
-        if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
+        if ( PeekMessage( &msg, NULL, 0, 0, PM_REMOVE ) )
         {
-            TranslateMessage(&msg);
-            DispatchMessage(&msg);
+            if ( msg.message == WM_QUIT )
+            {
+                break;
+            }
+            else
+            {
+                TranslateMessage( &msg );
+                DispatchMessage( &msg );
+            }
+        }
+        else
+        {
+            pMainGame->Update();
+            pMainGame->Render();
         }
     }
-
     return (int) msg.wParam;
 }
 
@@ -105,6 +129,8 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
       return FALSE;
    }
 
+   g_hWnd = hWnd;
+
    ShowWindow(hWnd, nCmdShow);
    UpdateWindow(hWnd);
 
@@ -140,14 +166,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             default:
                 return DefWindowProc(hWnd, message, wParam, lParam);
             }
-        }
-        break;
-    case WM_PAINT:
-        {
-            PAINTSTRUCT ps;
-            HDC hdc = BeginPaint(hWnd, &ps);
-            // TODO: 여기에 hdc를 사용하는 그리기 코드를 추가합니다...
-            EndPaint(hWnd, &ps);
         }
         break;
     case WM_DESTROY:

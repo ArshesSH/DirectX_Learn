@@ -13,3 +13,15 @@
 #include <malloc.h>
 #include <memory.h>
 #include <tchar.h>
+
+
+// DirectX9
+#include <d3dx9.h>
+#pragma comment(lib, "d3d9.lib")
+#pragma comment(lib, "d3dx9.lib")
+
+extern HWND g_hWnd;
+#define SAFE_RELEASE(p) { if(p)p->Release(); p = NULL;}	//directX 메모리 해제는 Release를 사용해서함
+#define SAFE_DELETE(p){if(p)delete p; p = NULL;}
+
+
