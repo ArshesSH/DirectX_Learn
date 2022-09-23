@@ -30,12 +30,27 @@
     <ClInclude Include="MainGame.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="DeviceManager.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="SingletonTemplate.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DirectX_Learn.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="MainGame.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="DeviceManager.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
