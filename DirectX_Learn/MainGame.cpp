@@ -2,7 +2,13 @@
 #include "DeviceManager.h"
 #include "MainGame.h"
 
+#include "CubePC.h"
+#include "Grid.h"
+
 MainGame::MainGame( )
+	:
+	pCubePC( std::make_unique<CubePC>() ),
+	pGrid(std::make_unique<Grid>())
 {
 }
 
@@ -15,6 +21,10 @@ void MainGame::Setup()
 {
 	SetupLine();
 	SetupTriangle();
+
+	pGrid->Setup();
+	pCubePC->Setup();
+
 	g_pD3DDevice->SetRenderState( D3DRS_LIGHTING, false );
 }
 
@@ -33,6 +43,8 @@ void MainGame::Update()
 	D3DXMATRIXA16 matProj;
 	D3DXMatrixPerspectiveFovLH( &matProj, D3DX_PI / 4.0f, (float)rc.right / (float)rc.bottom, 1.0f, 1000.0f );
 	g_pD3DDevice->SetTransform( D3DTS_PROJECTION, &matProj );
+
+	pCubePC->Update();
 }
 
 void MainGame::Render()
@@ -50,8 +62,22 @@ void MainGame::Render()
 
 void MainGame::Draw()
 {
-	gfx.DrawLine( lineVertices );
-	gfx.DrawTriangle( triVertices );
-	//DrawLine();
-	//DrawTriangle();
+	
+	/* //Draw Line and Triangle
+	{
+		gfx.DrawLine( lineVertices );
+		gfx.DrawTriangle( triVertices );
+	}
+	*/
+
+	// Draw Grid
+	{
+		pGrid->Draw();
+	}
+
+	// Draw Cube
+	{
+		pCubePC->Render();
+	}
+
 }

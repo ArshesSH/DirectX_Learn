@@ -142,20 +142,26 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="CubePC.h" />
     <ClInclude Include="DeviceManager.h" />
     <ClInclude Include="DirectX_Learn.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="Graphics.h" />
+    <ClInclude Include="Grid.h" />
     <ClInclude Include="MainGame.h" />
+    <ClInclude Include="Gizmo.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="SingletonTemplate.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CubePC.cpp" />
     <ClCompile Include="DeviceManager.cpp" />
     <ClCompile Include="DirectX_Learn.cpp" />
     <ClCompile Include="Graphics.cpp" />
+    <ClCompile Include="Grid.cpp" />
     <ClCompile Include="MainGame.cpp" />
+    <ClCompile Include="Gizmo.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DirectX_Learn.rc" />

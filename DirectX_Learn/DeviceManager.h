@@ -22,4 +22,3 @@ private:
 	LPDIRECT3D9			pD3D;
 	LPDIRECT3DDEVICE9	pD3DDevice;
 };
-

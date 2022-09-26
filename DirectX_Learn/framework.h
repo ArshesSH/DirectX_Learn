@@ -17,6 +17,7 @@
 #include <vector>
 #include <string>
 #include <cassert>
+#include <memory>
 
 // DirectX9
 #include <d3dx9.h>
@@ -37,7 +38,7 @@ extern HWND g_hWnd;
 				return &instance; \
 			}\
 
-struct PC_VERTEX
+struct PC_VERTEX	//PointAndColor
 {
 	D3DXVECTOR3 p;
 	D3DCOLOR c;
