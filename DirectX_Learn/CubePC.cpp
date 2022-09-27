@@ -162,7 +162,7 @@ void CubePC::Render()
 	g_pD3DDevice->DrawPrimitiveUP( D3DPT_TRIANGLELIST, vertices.size() / 3, &vertices[0], sizeof( PC_VERTEX ) );
 }
 
-//D3DXVECTOR3& CubePC::GetPosition()
-//{
-//	// TODO: 여기에 return 문을 삽입합니다.
-//}
+D3DXVECTOR3& CubePC::GetPosition()
+{
+	return vPosition;
+}

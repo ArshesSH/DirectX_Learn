@@ -7,7 +7,7 @@ public:
 	void Setup();
 	void Update();
 	void Render();
-	//D3DXVECTOR3& GetPosition();
+	D3DXVECTOR3& GetPosition();
 
 private:
 	std::vector<PC_VERTEX> vertices;

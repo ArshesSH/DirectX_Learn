@@ -2,13 +2,15 @@
 #include "DeviceManager.h"
 #include "MainGame.h"
 
+#include "Camera.h"
 #include "CubePC.h"
 #include "Grid.h"
 
 MainGame::MainGame( )
 	:
 	pCubePC( std::make_unique<CubePC>() ),
-	pGrid(std::make_unique<Grid>())
+	pGrid(std::make_unique<Grid>()),
+	pCam(std::make_unique<Camera>())
 {
 }
 
@@ -24,27 +26,23 @@ void MainGame::Setup()
 
 	pGrid->Setup();
 	pCubePC->Setup();
+	pCam->Setup(&pCubePC->GetPosition());
 
 	g_pD3DDevice->SetRenderState( D3DRS_LIGHTING, false );
 }
 
 void MainGame::Update()
 {
-	RECT rc;
-	GetClientRect( g_hWnd, &rc );
+	if ( pCubePC )
+	{
+		pCubePC->Update();
+	}
 
-	D3DXVECTOR3 vEye = D3DXVECTOR3( 0, 0, -5.0f );
-	D3DXVECTOR3 vLookAt = D3DXVECTOR3( 0, 0, 0 );
-	D3DXVECTOR3 vUp = D3DXVECTOR3( 0, 1, 0 );
-	D3DXMATRIXA16 matView;
-	D3DXMatrixLookAtLH( &matView, &vEye, &vLookAt, &vUp );
-	g_pD3DDevice->SetTransform( D3DTS_VIEW, &matView );
-
-	D3DXMATRIXA16 matProj;
-	D3DXMatrixPerspectiveFovLH( &matProj, D3DX_PI / 4.0f, (float)rc.right / (float)rc.bottom, 1.0f, 1000.0f );
-	g_pD3DDevice->SetTransform( D3DTS_PROJECTION, &matProj );
-
-	pCubePC->Update();
+	// 카메라는 항상 나중에 업데이트
+	if ( pCam )
+	{
+		pCam->Update();
+	}
 }
 
 void MainGame::Render()
@@ -58,6 +56,14 @@ void MainGame::Render()
 	g_pD3DDevice->EndScene();
 
 	g_pD3DDevice->Present( NULL, NULL, NULL, NULL );
+}
+
+void MainGame::WndProc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam )
+{
+	if ( pCam )
+	{
+		pCam->WndProc( hWnd, message, wParam, lParam );
+	}
 }
 
 void MainGame::Draw()

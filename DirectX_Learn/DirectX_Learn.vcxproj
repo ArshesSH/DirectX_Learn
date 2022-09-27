@@ -91,6 +91,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -142,7 +143,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Camera.h" />
+    <ClInclude Include="CubeNode.h" />
     <ClInclude Include="CubePC.h" />
+    <ClInclude Include="CubePNT.h" />
     <ClInclude Include="DeviceManager.h" />
     <ClInclude Include="DirectX_Learn.h" />
     <ClInclude Include="framework.h" />
@@ -155,7 +159,10 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="CubeNode.cpp" />
     <ClCompile Include="CubePC.cpp" />
+    <ClCompile Include="CubePNT.cpp" />
     <ClCompile Include="DeviceManager.cpp" />
     <ClCompile Include="DirectX_Learn.cpp" />
     <ClCompile Include="Graphics.cpp" />

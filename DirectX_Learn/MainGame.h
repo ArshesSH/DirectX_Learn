@@ -11,6 +11,7 @@ public:
 	void Setup();
 	void Update();
 	void Render();
+	void WndProc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam );
 	
 private:
 	void Draw();
@@ -69,6 +70,7 @@ private:
 	//Draw Triangle
 	std::vector<PC_VERTEX> triVertices;
 
+	std::unique_ptr<class Camera> pCam;
 	std::unique_ptr<class CubePC> pCubePC;
 	std::unique_ptr<class Grid> pGrid;
 };

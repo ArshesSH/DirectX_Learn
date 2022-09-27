@@ -38,6 +38,18 @@ extern HWND g_hWnd;
 				return &instance; \
 			}\
 
+#define SYNTHESIZE(varType, varName, funcName) \
+	protected: varType varName; \
+	public: \
+	inline varType Get##funcName(void) const {return varName;} \
+	inline void Set##funcName(varType var) {varName = var;} \
+	
+#define SYNTHESIZE_PASS_BY_REF(varType, varName, funcName) \
+	protected: varType varName; \
+	public: \
+	inline varType& Get##funcName(void) {return varName;} \
+	inline void Set##funcName(varType& var) {varName = var;} \
+
 struct PC_VERTEX	//PointAndColor
 {
 	D3DXVECTOR3 p;
@@ -47,6 +59,19 @@ struct PC_VERTEX	//PointAndColor
 	enum
 	{
 		FVF = D3DFVF_XYZ | D3DFVF_DIFFUSE
+	};
+};
+
+struct PNT_VERTEX	//PointAndTexture
+{
+	D3DXVECTOR3 p;
+	D3DXVECTOR3 n;
+	D3DXVECTOR2 t;
+
+	// 아래 순서와 위의 자료형 순서가 같아야 함
+	enum
+	{
+		FVF = D3DFVF_XYZ | D3DFVF_NORMAL | D3DFVF_TEX1
 	};
 };
 
