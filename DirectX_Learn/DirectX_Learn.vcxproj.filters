@@ -16,6 +16,9 @@
     <Filter Include="CubeMan">
       <UniqueIdentifier>{0a4a27c7-0479-4023-8f5b-dd76a37b52be}</UniqueIdentifier>
     </Filter>
+    <Filter Include="CubeMan\BodyParts">
+      <UniqueIdentifier>{7a214be8-ff04-4a6c-9afa-0d16dc21a56f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -60,6 +63,33 @@
     <ClInclude Include="CubeNode.h">
       <Filter>CubeMan</Filter>
     </ClInclude>
+    <ClInclude Include="Character.h">
+      <Filter>CubeMan</Filter>
+    </ClInclude>
+    <ClInclude Include="CubeMan.h">
+      <Filter>CubeMan</Filter>
+    </ClInclude>
+    <ClInclude Include="CmBody.h">
+      <Filter>CubeMan\BodyParts</Filter>
+    </ClInclude>
+    <ClInclude Include="CmHead.h">
+      <Filter>CubeMan\BodyParts</Filter>
+    </ClInclude>
+    <ClInclude Include="CmLeftArm.h">
+      <Filter>CubeMan\BodyParts</Filter>
+    </ClInclude>
+    <ClInclude Include="CmLeftLeg.h">
+      <Filter>CubeMan\BodyParts</Filter>
+    </ClInclude>
+    <ClInclude Include="CmRightArm.h">
+      <Filter>CubeMan\BodyParts</Filter>
+    </ClInclude>
+    <ClInclude Include="CmRightLeg.h">
+      <Filter>CubeMan\BodyParts</Filter>
+    </ClInclude>
+    <ClInclude Include="CubeManBodyParts.h">
+      <Filter>CubeMan\BodyParts</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DirectX_Learn.cpp">
@@ -91,6 +121,33 @@
     </ClCompile>
     <ClCompile Include="CubeNode.cpp">
       <Filter>CubeMan</Filter>
+    </ClCompile>
+    <ClCompile Include="Character.cpp">
+      <Filter>CubeMan</Filter>
+    </ClCompile>
+    <ClCompile Include="CubeMan.cpp">
+      <Filter>CubeMan</Filter>
+    </ClCompile>
+    <ClCompile Include="CmBody.cpp">
+      <Filter>CubeMan\BodyParts</Filter>
+    </ClCompile>
+    <ClCompile Include="CmHead.cpp">
+      <Filter>CubeMan\BodyParts</Filter>
+    </ClCompile>
+    <ClCompile Include="CmLeftArm.cpp">
+      <Filter>CubeMan\BodyParts</Filter>
+    </ClCompile>
+    <ClCompile Include="CmLeftLeg.cpp">
+      <Filter>CubeMan\BodyParts</Filter>
+    </ClCompile>
+    <ClCompile Include="CmRightArm.cpp">
+      <Filter>CubeMan\BodyParts</Filter>
+    </ClCompile>
+    <ClCompile Include="CmRightLeg.cpp">
+      <Filter>CubeMan\BodyParts</Filter>
+    </ClCompile>
+    <ClCompile Include="CubeManBodyParts.cpp">
+      <Filter>CubeMan\BodyParts</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

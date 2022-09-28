@@ -143,7 +143,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="CmBody.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="Character.h" />
+    <ClInclude Include="CmLeftArm.h" />
+    <ClInclude Include="CmLeftLeg.h" />
+    <ClInclude Include="CmRightArm.h" />
+    <ClInclude Include="CmRightLeg.h" />
+    <ClInclude Include="CubeMan.h" />
+    <ClInclude Include="CubeManBodyParts.h" />
     <ClInclude Include="CubeNode.h" />
     <ClInclude Include="CubePC.h" />
     <ClInclude Include="CubePNT.h" />
@@ -152,6 +160,7 @@
     <ClInclude Include="framework.h" />
     <ClInclude Include="Graphics.h" />
     <ClInclude Include="Grid.h" />
+    <ClInclude Include="CmHead.h" />
     <ClInclude Include="MainGame.h" />
     <ClInclude Include="Gizmo.h" />
     <ClInclude Include="Resource.h" />
@@ -159,7 +168,15 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CmBody.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Character.cpp" />
+    <ClCompile Include="CmLeftArm.cpp" />
+    <ClCompile Include="CmLeftLeg.cpp" />
+    <ClCompile Include="CmRightArm.cpp" />
+    <ClCompile Include="CmRightLeg.cpp" />
+    <ClCompile Include="CubeMan.cpp" />
+    <ClCompile Include="CubeManBodyParts.cpp" />
     <ClCompile Include="CubeNode.cpp" />
     <ClCompile Include="CubePC.cpp" />
     <ClCompile Include="CubePNT.cpp" />
@@ -167,6 +184,7 @@
     <ClCompile Include="DirectX_Learn.cpp" />
     <ClCompile Include="Graphics.cpp" />
     <ClCompile Include="Grid.cpp" />
+    <ClCompile Include="CmHead.cpp" />
     <ClCompile Include="MainGame.cpp" />
     <ClCompile Include="Gizmo.cpp" />
   </ItemGroup>

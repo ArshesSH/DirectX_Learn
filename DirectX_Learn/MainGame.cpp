@@ -5,12 +5,14 @@
 #include "Camera.h"
 #include "CubePC.h"
 #include "Grid.h"
+#include "CubeMan.h"
 
 MainGame::MainGame( )
 	:
 	pCubePC( std::make_unique<CubePC>() ),
 	pGrid(std::make_unique<Grid>()),
-	pCam(std::make_unique<Camera>())
+	pCam(std::make_unique<Camera>()),
+	pCubeMan(std::make_unique<CubeMan>())
 {
 }
 
@@ -26,16 +28,21 @@ void MainGame::Setup()
 
 	pGrid->Setup();
 	pCubePC->Setup();
-	pCam->Setup(&pCubePC->GetPosition());
+	pCubeMan->Setup();
+	pCam->Setup(&pCubeMan->GetPosition());
 
 	g_pD3DDevice->SetRenderState( D3DRS_LIGHTING, false );
 }
 
 void MainGame::Update()
 {
-	if ( pCubePC )
+	//if ( pCubePC )
+	//{
+	//	pCubePC->Update();
+	//}
+	if ( pCubeMan )
 	{
-		pCubePC->Update();
+		pCubeMan->Update();
 	}
 
 	// 카메라는 항상 나중에 업데이트
@@ -83,7 +90,12 @@ void MainGame::Draw()
 
 	// Draw Cube
 	{
-		pCubePC->Render();
+		//pCubePC->Render();
+	}
+
+	// Draw CubeMan
+	{
+		pCubeMan->Draw();
 	}
 
 }

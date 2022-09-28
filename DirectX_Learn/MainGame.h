@@ -73,5 +73,6 @@ private:
 	std::unique_ptr<class Camera> pCam;
 	std::unique_ptr<class CubePC> pCubePC;
 	std::unique_ptr<class Grid> pGrid;
+	std::unique_ptr<class CubeMan> pCubeMan;
 };
 

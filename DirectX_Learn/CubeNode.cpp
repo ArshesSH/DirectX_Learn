@@ -50,7 +50,7 @@ void CubeNode::Update()
 	{
 		worldTM *= *pParentWorldTM;
 	}
-	for ( auto p : childs )
+	for ( const auto& p : childs )
 	{
 		p->Update();
 	}
@@ -61,7 +61,7 @@ void CubeNode::Render()
 	g_pD3DDevice->SetTransform( D3DTS_WORLD, &worldTM );
 	CubePNT::Render();
 
-	for ( auto p : childs )
+	for ( const auto& p : childs )
 	{
 		p->Render();
 	}

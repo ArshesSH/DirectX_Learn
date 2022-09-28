@@ -45,7 +45,7 @@ void CubePNT::Setup()
 	indices.push_back( 4 );	indices.push_back( 3 );	indices.push_back( 7 );
 
 	vertices.resize( 36 );
-	for ( auto i = 0; i < indices.size(); i += 3 )
+	for ( size_t i = 0; i < indices.size(); i += 3 )
 	{
 		vertices[i + 0] = _vertices[indices[i + 0]];
 		vertices[i + 1] = _vertices[indices[i + 1]];
