@@ -21,6 +21,13 @@ void CubeMan::Setup()
 {
 	Character::Setup();
 
+	// Material
+	ZeroMemory( &stMtl, sizeof( D3DMATERIAL9 ) );
+	stMtl.Ambient = D3DXCOLOR( 0.7f, 0.7f, 0.7f, 1.0f );
+	stMtl.Diffuse = D3DXCOLOR( 0.7f, 0.7f, 0.7f, 1.0f );
+	stMtl.Specular = D3DXCOLOR( 0.7f, 0.7f, 0.7f, 1.0f );
+
+
 	CmBody* pBody = new CmBody;
 	pBody->Setup();
 	pBody->SetParentWorldTM( &worldMat );
@@ -60,6 +67,9 @@ void CubeMan::Draw()
 {
 	if ( g_pD3DDevice )
 	{
+		g_pD3DDevice->SetRenderState( D3DRS_LIGHTING, true );
+		g_pD3DDevice->SetMaterial( &stMtl );
+
 		Character::Draw();
 
 		D3DXMATRIXA16 worldMat;
@@ -69,5 +79,6 @@ void CubeMan::Draw()
 		{
 			pRoot->Render();
 		}
+		g_pD3DDevice->SetRenderState( D3DRS_LIGHTING, false );
 	}
 }

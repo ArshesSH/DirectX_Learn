@@ -26,6 +26,8 @@ void MainGame::Setup()
 	SetupLine();
 	SetupTriangle();
 
+	SetupLight();
+
 	pGrid->Setup();
 	pCubePC->Setup();
 	pCubeMan->Setup();
@@ -71,6 +73,21 @@ void MainGame::WndProc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam )
 	{
 		pCam->WndProc( hWnd, message, wParam, lParam );
 	}
+}
+
+void MainGame::SetupLight()
+{
+	D3DLIGHT9 light;
+	ZeroMemory( &light, sizeof( D3DLIGHT9 ) );
+	light.Type = D3DLIGHT_DIRECTIONAL;
+	light.Ambient = D3DXCOLOR( 0.8f, 0.8f, 0.8f, 1.0f );
+	light.Diffuse = D3DXCOLOR( 0.8f, 0.8f, 0.8f, 1.0f );
+	light.Specular = D3DXCOLOR( 0.8f, 0.8f, 0.8f, 1.0f );
+	D3DXVECTOR3 dir( 1.0f, -1.0f, 1.0f );
+	D3DXVec3Normalize( &dir, &dir );
+	light.Direction = dir;
+	g_pD3DDevice->SetLight( 0, &light );
+	g_pD3DDevice->LightEnable( 0, true );
 }
 
 void MainGame::Draw()

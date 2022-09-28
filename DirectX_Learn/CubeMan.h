@@ -15,6 +15,6 @@ public:
 
 protected:
 	CubeNode* pRoot;
-
+	D3DMATERIAL9 stMtl;
 };
 
