@@ -3,9 +3,10 @@
 
 CubeNode::CubeNode()
 	:
-	rotDeltaX(0.0f),
-	pParentWorldTM(nullptr),
-	localPos(0.0f, 0.0f, 0.0f)
+	rotDeltaX( 0.0f ),
+	pParentWorldTM( nullptr ),
+	localPos( 0.0f, 0.0f, 0.0f ),
+	rotX( 0.0f )
 {
 	D3DXMatrixIdentity( &localTM );
 	D3DXMatrixIdentity( &worldTM );
@@ -39,10 +40,28 @@ void CubeNode::Update()
 {
 	CubePNT::Update();
 
+	// Rotate
+	{
+		rotX += rotDeltaX;
+		const float desireAngle = D3DX_PI / 6.0f;
+		if ( rotX > desireAngle )
+		{
+			rotX = desireAngle;
+			rotDeltaX *= -1;
+		}
+		if ( rotX < -desireAngle )
+		{
+
+			rotX = -desireAngle;
+			rotDeltaX *= -1;
+		}
+	}
+
 	D3DXMATRIXA16 matR, matT;
 	D3DXMatrixIdentity( &matR );
 	D3DXMatrixIdentity( &matT );
 
+	D3DXMatrixRotationX( &matR, rotX );
 	D3DXMatrixTranslation( &matT, localPos.x, localPos.y, localPos.z );
 	localTM = matR * matT;
 	worldTM = localTM;

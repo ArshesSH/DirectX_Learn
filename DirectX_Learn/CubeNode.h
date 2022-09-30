@@ -23,5 +23,7 @@ protected:
 	SYNTHESIZE( D3DXMATRIXA16*, pParentWorldTM, ParentWorldTM )
 	SYNTHESIZE( float, rotDeltaX, RotDeltaX )
 
+	float rotX;
+
 };
 
