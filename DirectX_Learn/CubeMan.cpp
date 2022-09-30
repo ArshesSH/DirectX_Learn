@@ -10,11 +10,15 @@
 #include "CmRightLeg.h"
 
 CubeMan::CubeMan()
+	:
+	pRoot(nullptr),
+	pTexture(nullptr)
 {
 }
 
 CubeMan::~CubeMan()
 {
+	SAFE_RELEASE( pTexture );
 }
 
 void CubeMan::Setup()
@@ -26,6 +30,8 @@ void CubeMan::Setup()
 	stMtl.Ambient = D3DXCOLOR( 0.7f, 0.7f, 0.7f, 1.0f );
 	stMtl.Diffuse = D3DXCOLOR( 0.7f, 0.7f, 0.7f, 1.0f );
 	stMtl.Specular = D3DXCOLOR( 0.7f, 0.7f, 0.7f, 1.0f );
+
+	D3DXCreateTextureFromFile( g_pD3DDevice, L"Data/Textures/Steve.png", &pTexture );
 
 
 	CmBody* pBody = new CmBody;
@@ -79,9 +85,11 @@ void CubeMan::Draw()
 		D3DXMATRIXA16 worldMat;
 		D3DXMatrixIdentity( &worldMat );
 		g_pD3DDevice->SetTransform( D3DTS_WORLD, &worldMat );
+		g_pD3DDevice->SetTexture( 0, pTexture );
 		if ( pRoot )
 		{
 			pRoot->Render();
+			g_pD3DDevice->SetTexture( 0, nullptr );
 		}
 		g_pD3DDevice->SetRenderState( D3DRS_LIGHTING, false );
 	}

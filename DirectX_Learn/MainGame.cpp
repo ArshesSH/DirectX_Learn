@@ -7,17 +7,19 @@
 #include "Grid.h"
 #include "CubeMan.h"
 
-MainGame::MainGame( )
+MainGame::MainGame()
 	:
 	pCubePC( std::make_unique<CubePC>() ),
-	pGrid(std::make_unique<Grid>()),
-	pCam(std::make_unique<Camera>()),
-	pCubeMan(std::make_unique<CubeMan>())
+	pGrid( std::make_unique<Grid>() ),
+	pCam( std::make_unique<Camera>() ),
+	pCubeMan( std::make_unique<CubeMan>() ),
+	pTexture( nullptr )
 {
 }
 
 MainGame::~MainGame()
 {
+	SAFE_RELEASE( pTexture );
 	g_pDeviceManager->Destroy();
 }
 
@@ -32,6 +34,8 @@ void MainGame::Setup()
 	pCubePC->Setup();
 	pCubeMan->Setup();
 	pCam->Setup(&pCubeMan->GetPosition());
+
+	SetupTexture();
 
 	g_pD3DDevice->SetRenderState( D3DRS_LIGHTING, false );
 }
@@ -90,6 +94,56 @@ void MainGame::SetupLight()
 	g_pD3DDevice->LightEnable( 0, true );
 }
 
+void MainGame::SetupTexture()
+{
+	D3DXCreateTextureFromFile( g_pD3DDevice, L"Data/Textures/Steve.png", &pTexture );
+	PT_VERTEX v;
+	v.p = D3DXVECTOR3( 0.0f, 0.0f, 0.0f );
+	v.t = D3DXVECTOR2( 0.0f, 1.0f );
+	textureVertices.push_back( v );
+
+	v.p = D3DXVECTOR3( 0.0f, 2.0f, 0.0f );
+	v.t = D3DXVECTOR2( 0.0f, 0.0f );
+	textureVertices.push_back( v );
+
+	v.p = D3DXVECTOR3( 2.0f, 2.0f, 0.0f );
+	v.t = D3DXVECTOR2( 1.0f, 0.0f );
+	textureVertices.push_back( v );
+
+	v.p = D3DXVECTOR3( 0.0f, 0.0f, 0.0f );
+	v.t = D3DXVECTOR2( 0.0f, 1.0f );
+	textureVertices.push_back( v );
+
+	v.p = D3DXVECTOR3( -2.0f, 2.0f, 0.0f );
+	v.t = D3DXVECTOR2( 1.0f, 0.0f );
+	textureVertices.push_back( v );
+
+	v.p = D3DXVECTOR3( 0.0f, 2.0f, 0.0f );
+	v.t = D3DXVECTOR2( 0.0f, 0.0f );
+	textureVertices.push_back( v );
+
+
+}
+
+void MainGame::DrawTexture()
+{
+	if ( g_pD3DDevice )
+	{
+		g_pD3DDevice->SetRenderState( D3DRS_LIGHTING, false );
+
+		D3DXMATRIXA16 worldMat;
+		D3DXMatrixIdentity( &worldMat );
+		g_pD3DDevice->SetTransform( D3DTS_WORLD, &worldMat );
+
+		g_pD3DDevice->SetTexture( 0, pTexture );
+		g_pD3DDevice->SetFVF( PT_VERTEX::FVF );
+
+		g_pD3DDevice->DrawPrimitiveUP( D3DPT_TRIANGLELIST, textureVertices.size() / 3, &textureVertices[0], sizeof( PT_VERTEX ) );
+
+		g_pD3DDevice->SetTexture( 0, nullptr );
+	}
+}
+
 void MainGame::Draw()
 {
 	
@@ -113,6 +167,11 @@ void MainGame::Draw()
 	// Draw CubeMan
 	{
 		pCubeMan->Draw();
+	}
+
+	//Draw TestTexture
+	{
+		//DrawTexture();
 	}
 
 }

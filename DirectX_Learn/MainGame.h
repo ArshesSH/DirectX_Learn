@@ -14,6 +14,9 @@ public:
 	void WndProc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam );
 
 	void SetupLight();
+
+	void SetupTexture();
+	void DrawTexture();
 	
 private:
 	void Draw();
@@ -76,5 +79,9 @@ private:
 	std::unique_ptr<class CubePC> pCubePC;
 	std::unique_ptr<class Grid> pGrid;
 	std::unique_ptr<class CubeMan> pCubeMan;
+
+	// Texture
+	LPDIRECT3DTEXTURE9 pTexture;
+	std::vector<PT_VERTEX> textureVertices;
 };
 

@@ -16,5 +16,7 @@ public:
 protected:
 	CubeNode* pRoot;
 	D3DMATERIAL9 stMtl;
+
+	LPDIRECT3DTEXTURE9 pTexture;
 };
 

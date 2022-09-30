@@ -75,5 +75,17 @@ struct PNT_VERTEX	//PointAndTexture
 	};
 };
 
+struct PT_VERTEX	//PointAndTexture
+{
+	D3DXVECTOR3 p;
+	D3DXVECTOR2 t;
+
+	// 아래 순서와 위의 자료형 순서가 같아야 함
+	enum
+	{
+		FVF = D3DFVF_XYZ | D3DFVF_TEX1
+	};
+};
+
 
 #include "DeviceManager.h"
