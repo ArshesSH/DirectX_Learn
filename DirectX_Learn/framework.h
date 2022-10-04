@@ -50,6 +50,21 @@ extern HWND g_hWnd;
 	inline varType& Get##funcName(void) {return varName;} \
 	inline void Set##funcName(varType& var) {varName = var;} \
 
+#define SAFE_ADD_REF(p) {if(p) p->AddRef();}
+
+#define SYNTHESIZE_ADD_REF(varType, varName, funcName) \
+	protected: varType varName; \
+	public: \
+	inline varType Get##funcName(void) const {return varName;} \
+	inline void Set##funcName(varType var) { \
+		if(varName != var) { \
+			SAFE_ADD_REF(var); \
+			SAFE_RELEASE(varName); \
+			varName = var; \
+		} \
+	} \
+
+
 struct PC_VERTEX	//PointAndColor
 {
 	D3DXVECTOR3 p;
@@ -89,3 +104,6 @@ struct PT_VERTEX	//PointAndTexture
 
 
 #include "DeviceManager.h"
+#include "ObjectManager.h"
+#include "Object.h"
+#include "TextureManager.h"

@@ -19,6 +19,9 @@
     <Filter Include="CubeMan\BodyParts">
       <UniqueIdentifier>{7a214be8-ff04-4a6c-9afa-0d16dc21a56f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Obj">
+      <UniqueIdentifier>{afc252c0-3e91-488d-ba68-fe6e160f5872}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -90,6 +93,21 @@
     <ClInclude Include="CubeManBodyParts.h">
       <Filter>CubeMan\BodyParts</Filter>
     </ClInclude>
+    <ClInclude Include="Object.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectManager.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureManager.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjGroup.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="MtlTex.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DirectX_Learn.cpp">
@@ -148,6 +166,21 @@
     </ClCompile>
     <ClCompile Include="CubeManBodyParts.cpp">
       <Filter>CubeMan\BodyParts</Filter>
+    </ClCompile>
+    <ClCompile Include="Object.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectManager.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureManager.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjGroup.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="MtlTex.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
