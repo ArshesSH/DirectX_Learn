@@ -241,7 +241,7 @@ void ObjLoader::LoadSurface( OUT std::vector<D3DXVECTOR3>& surfaces, IN char* sz
 
 	if ( pMat )
 	{
-		for ( auto i = 0; i < surfaces.size(); ++i )
+		for ( size_t i = 0; i < surfaces.size(); ++i )
 		{
 			D3DXVec3TransformCoord( &surfaces[i], &surfaces[i], pMat );
 		}

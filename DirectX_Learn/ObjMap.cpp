@@ -21,7 +21,7 @@ bool ObjMap::GetHeight( IN float x, OUT float& y, IN float z )
 {
 	D3DXVECTOR3 rayPos( x, 1000.0f, z );
 	D3DXVECTOR3 rayDir( 0.0f, -1.0f, 0.0f );
-	for ( auto i = 0; i < surfaces.size(); i += 3 )
+	for ( size_t i = 0; i < surfaces.size(); i += 3 )
 	{
 		float u, v, f;
 		if ( D3DXIntersectTri(

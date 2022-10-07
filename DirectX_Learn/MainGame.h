@@ -21,6 +21,10 @@ public:
 
 	void SetupObj();
 	void DrawObj();
+
+	void SetupMap();
+	void DrawMap();
+	void SetupSurface();
 	
 private:
 	void Draw();
@@ -90,5 +94,9 @@ private:
 
 	// Obj
 	std::vector<class ObjGroup*> pGroups;
+
+	//Map
+	std::vector<class ObjGroup*> pMapGroups;
+	iMap* pMap;
 };
 

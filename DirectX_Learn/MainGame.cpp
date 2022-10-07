@@ -8,6 +8,7 @@
 #include "CubeMan.h"
 #include "ObjLoader.h"
 #include "ObjGroup.h"
+#include "ObjMap.h"
 
 MainGame::MainGame()
 	:
@@ -15,12 +16,14 @@ MainGame::MainGame()
 	pGrid( std::make_unique<Grid>() ),
 	pCam( std::make_unique<Camera>() ),
 	pCubeMan( std::make_unique<CubeMan>() ),
-	pTexture( nullptr )
+	pTexture( nullptr ),
+	pMap( nullptr )
 {
 }
 
 MainGame::~MainGame()
 {
+	SAFE_DELETE( pMap );
 	SAFE_RELEASE( pTexture );
 	g_pDeviceManager->Destroy();
 }
@@ -35,8 +38,10 @@ void MainGame::Setup()
 	pGrid->Setup();
 	pCubePC->Setup();
 	pCubeMan->Setup();
-	SetupObj();
+	//SetupObj();
 
+	SetupMap();
+	SetupSurface();
 
 	pCam->Setup(&pCubeMan->GetPosition());
 
@@ -53,7 +58,7 @@ void MainGame::Update()
 	//}
 	if ( pCubeMan )
 	{
-		pCubeMan->Update();
+		pCubeMan->Update(pMap);
 	}
 
 	// 카메라는 항상 나중에 업데이트
@@ -152,7 +157,7 @@ void MainGame::DrawTexture()
 void MainGame::SetupObj()
 {
 	ObjLoader loader;
-	loader.Load( pGroups, (char*)"obj", (char*)"box.obj" );
+	loader.Load( pGroups, (char*)"Data/Models", (char*)"box.obj" );
 }
 
 void MainGame::DrawObj()
@@ -167,6 +172,36 @@ void MainGame::DrawObj()
 	{
 		p->Render();
 	}
+}
+
+void MainGame::SetupMap()
+{
+	ObjLoader loader;
+	loader.Load( pMapGroups, (char*)"Data/Models", (char*)"Map.obj" );
+}
+
+void MainGame::DrawMap()
+{
+	D3DXMATRIXA16 matWorld, matS, matR;
+	D3DXMatrixScaling( &matS, 0.01f, 0.01f, 0.01f );
+	D3DXMatrixRotationX( &matR, -D3DX_PI / 2.0f );
+	matWorld = matS * matR;
+
+	g_pD3DDevice->SetTransform( D3DTS_WORLD, &matWorld );
+	for ( auto p : pMapGroups )
+	{
+		p->Render();
+	}
+}
+
+void MainGame::SetupSurface()
+{
+	D3DXMATRIXA16 matWorld, matS, matR;
+	D3DXMatrixScaling( &matS, 0.01f, 0.01f, 0.01f );
+	D3DXMatrixRotationX( &matR, -D3DX_PI / 2.0f );
+	matWorld = matS * matR;
+
+	pMap = new ObjMap( (char*)"Data/Models", (char*)"map_surface.obj", &matWorld );
 }
 
 void MainGame::Draw()
@@ -201,7 +236,12 @@ void MainGame::Draw()
 
 	//Draw Obj
 	{
-		DrawObj();
+		//DrawObj();
+	}
+
+	//Draw Map
+	{
+		DrawMap();
 	}
 
 }

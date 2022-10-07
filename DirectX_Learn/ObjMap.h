@@ -7,7 +7,7 @@ public:
 	~ObjMap(void);
 
 	void Load( IN char* szFolder, IN char* szFile, IN D3DXMATRIXA16* pMat = nullptr );
-	virtual bool GetHeight( IN float x, OUT float& y, IN float z );
+	bool GetHeight( IN float x, OUT float& y, IN float z ) override;
 
 private:
 	std::vector<D3DXVECTOR3> surfaces;

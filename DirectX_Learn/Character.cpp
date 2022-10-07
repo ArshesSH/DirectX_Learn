@@ -1,11 +1,13 @@
 #include "framework.h"
 #include "Character.h"
+#include "iMap.h"
 
 Character::Character()
 	:
 	position( 0, 0, 0 ),
 	direction( 0, 0, 1 ),
-	rotY( 0.0f )
+	rotY( 0.0f ),
+	pMap( nullptr )
 {
 	D3DXMatrixIdentity( &worldMat );
 }
@@ -18,15 +20,21 @@ void Character::Setup()
 {
 }
 
-void Character::Update()
+
+void Character::Update( iMap* pMap_in )
 {
+	pMap = pMap_in;
+	D3DXVECTOR3 pos = position;
+
 	if ( GetAsyncKeyState( 'W' ) & 0x8000 )
 	{
-		position += (direction * 0.1f);
+		//position += (direction * 0.1f);
+		pos = position + (direction * 0.1f);
 	}
 	if ( GetAsyncKeyState( 'S' ) & 0x8000 )
 	{
-		position -= (direction * 0.1f);
+		//position -= (direction * 0.1f);
+		pos = position - (direction * 0.1f);
 	}
 	if ( GetAsyncKeyState( 'A' ) & 0x8000 )
 	{
@@ -47,7 +55,15 @@ void Character::Update()
 	direction = D3DXVECTOR3( 0, 0, 1 );
 	D3DXVec3TransformNormal( &direction, &direction, &matR );
 
-	D3DXMatrixTranslation( &matT, position.x, position.y, position.z );
+	if ( pMap )
+	{
+		if ( pMap->GetHeight( pos.x, pos.y, pos.z ) )
+		{
+			position = pos;
+		}
+	}
+
+	D3DXMatrixTranslation( &matT, position.x, position.y + 0.9f, position.z );
 	worldMat = matR * matT;
 }
 

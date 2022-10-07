@@ -6,7 +6,7 @@ public:
 	virtual ~Character();
 
 	virtual void Setup();
-	virtual void Update();
+	virtual void Update(class iMap* pMap_in);
 	virtual void Draw();
 	virtual D3DXVECTOR3& GetPosition();
 
@@ -15,5 +15,7 @@ protected:
 	D3DXVECTOR3 direction;
 	D3DXVECTOR3 position;
 	D3DXMATRIXA16 worldMat;
+	
+	iMap* pMap;
 };
 

@@ -1,6 +1,14 @@
 #include "framework.h"
 #include "TextureManager.h"
 
+TextureManager::TextureManager()
+{
+}
+
+TextureManager::~TextureManager()
+{
+}
+
 LPDIRECT3DTEXTURE9 TextureManager::GetTexture( const char* szFullPath )
 {
 	if ( textureMap.find( szFullPath ) == textureMap.end() )

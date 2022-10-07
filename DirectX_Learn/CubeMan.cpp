@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "CubeMan.h"
+#include "iMap.h"
 #include "CubeNode.h"
 
 #include "CmBody.h"
@@ -64,9 +65,9 @@ void CubeMan::Setup()
 	pRoot->AddChild( pRightLeg );
 }
 
-void CubeMan::Update()
+void CubeMan::Update(iMap* pMap)
 {
-	Character::Update();
+	Character::Update(pMap);
 	if ( pRoot )
 	{
 		pRoot->Update();

@@ -10,7 +10,7 @@ public:
 	virtual ~CubeMan();
 
 	void Setup() override;
-	void Update() override;
+	void Update(class iMap* pMap) override;
 	void Draw() override;
 
 protected:

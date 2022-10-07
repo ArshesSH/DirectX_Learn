@@ -8,6 +8,7 @@ class Object;
 class ObjectManager
 {
 public:
+
 	void AddObject( Object* const pObject )
 	{
 		objectSet.insert( pObject );
