@@ -7,9 +7,6 @@
 class TextureManager
 {
 public:
-	TextureManager() {}
-	~TextureManager() {}
-
 	LPDIRECT3DTEXTURE9 GetTexture( const char* szFullPath );
 	LPDIRECT3DTEXTURE9 GetTexture( const std::string& szFullPath );
 	void Destroy();
