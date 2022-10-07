@@ -161,6 +161,7 @@
     <ClInclude Include="Graphics.h" />
     <ClInclude Include="Grid.h" />
     <ClInclude Include="CmHead.h" />
+    <ClInclude Include="iMap.h" />
     <ClInclude Include="MainGame.h" />
     <ClInclude Include="Gizmo.h" />
     <ClInclude Include="MtlTex.h" />
@@ -168,6 +169,7 @@
     <ClInclude Include="ObjectManager.h" />
     <ClInclude Include="ObjGroup.h" />
     <ClInclude Include="ObjLoader.h" />
+    <ClInclude Include="ObjMap.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="SingletonTemplate.h" />
     <ClInclude Include="targetver.h" />
@@ -191,6 +193,7 @@
     <ClCompile Include="Graphics.cpp" />
     <ClCompile Include="Grid.cpp" />
     <ClCompile Include="CmHead.cpp" />
+    <ClCompile Include="iMap.cpp" />
     <ClCompile Include="MainGame.cpp" />
     <ClCompile Include="Gizmo.cpp" />
     <ClCompile Include="MtlTex.cpp" />
@@ -198,6 +201,7 @@
     <ClCompile Include="ObjectManager.cpp" />
     <ClCompile Include="ObjGroup.cpp" />
     <ClCompile Include="ObjLoader.cpp" />
+    <ClCompile Include="ObjMap.cpp" />
     <ClCompile Include="TextureManager.cpp" />
   </ItemGroup>
   <ItemGroup>

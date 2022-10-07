@@ -22,6 +22,9 @@
     <Filter Include="Obj">
       <UniqueIdentifier>{afc252c0-3e91-488d-ba68-fe6e160f5872}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Map">
+      <UniqueIdentifier>{0033fb89-a693-4544-b86b-8164fa37d08d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -111,6 +114,12 @@
     <ClInclude Include="ObjLoader.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="iMap.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjMap.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DirectX_Learn.cpp">
@@ -186,6 +195,12 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="ObjLoader.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="iMap.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjMap.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

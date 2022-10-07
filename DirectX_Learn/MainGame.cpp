@@ -6,8 +6,8 @@
 #include "CubePC.h"
 #include "Grid.h"
 #include "CubeMan.h"
-#include "ObjGroup.h"
 #include "ObjLoader.h"
+#include "ObjGroup.h"
 
 MainGame::MainGame()
 	:
