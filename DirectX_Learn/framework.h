@@ -104,6 +104,4 @@ struct PT_VERTEX	//PointAndTexture
 
 
 #include "DeviceManager.h"
-#include "ObjectManager.h"
 #include "Object.h"
-#include "TextureManager.h"

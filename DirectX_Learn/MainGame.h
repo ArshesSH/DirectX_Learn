@@ -2,6 +2,7 @@
 
 #include "Graphics.h"
 
+
 class MainGame
 {
 public:
@@ -17,6 +18,9 @@ public:
 
 	void SetupTexture();
 	void DrawTexture();
+
+	void SetupObj();
+	void DrawObj();
 	
 private:
 	void Draw();
@@ -83,5 +87,8 @@ private:
 	// Texture
 	LPDIRECT3DTEXTURE9 pTexture;
 	std::vector<PT_VERTEX> textureVertices;
+
+	// Obj
+	std::vector<class ObjGroup*> pGroups;
 };
 

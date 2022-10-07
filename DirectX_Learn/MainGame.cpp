@@ -6,6 +6,8 @@
 #include "CubePC.h"
 #include "Grid.h"
 #include "CubeMan.h"
+#include "ObjGroup.h"
+#include "ObjLoader.h"
 
 MainGame::MainGame()
 	:
@@ -33,6 +35,9 @@ void MainGame::Setup()
 	pGrid->Setup();
 	pCubePC->Setup();
 	pCubeMan->Setup();
+	SetupObj();
+
+
 	pCam->Setup(&pCubeMan->GetPosition());
 
 	SetupTexture();
@@ -144,6 +149,26 @@ void MainGame::DrawTexture()
 	}
 }
 
+void MainGame::SetupObj()
+{
+	ObjLoader loader;
+	loader.Load( pGroups, (char*)"obj", (char*)"box.obj" );
+}
+
+void MainGame::DrawObj()
+{
+	D3DXMATRIXA16 matWorld, matS, matR;
+	D3DXMatrixScaling( &matS, 0.1f, 0.1f, 0.1f );
+	D3DXMatrixRotationX( &matR, -D3DX_PI / 2.0f );
+	matWorld = matS * matR;
+
+	g_pD3DDevice->SetTransform( D3DTS_WORLD, &matWorld );
+	for ( auto p : pGroups )
+	{
+		p->Render();
+	}
+}
+
 void MainGame::Draw()
 {
 	
@@ -172,6 +197,11 @@ void MainGame::Draw()
 	//Draw TestTexture
 	{
 		//DrawTexture();
+	}
+
+	//Draw Obj
+	{
+		DrawObj();
 	}
 
 }
