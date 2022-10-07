@@ -108,6 +108,9 @@
     <ClInclude Include="MtlTex.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="ObjLoader.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DirectX_Learn.cpp">
@@ -180,6 +183,9 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="MtlTex.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjLoader.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

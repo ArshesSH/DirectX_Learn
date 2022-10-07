@@ -167,6 +167,7 @@
     <ClInclude Include="Object.h" />
     <ClInclude Include="ObjectManager.h" />
     <ClInclude Include="ObjGroup.h" />
+    <ClInclude Include="ObjLoader.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="SingletonTemplate.h" />
     <ClInclude Include="targetver.h" />
@@ -196,6 +197,7 @@
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="ObjectManager.cpp" />
     <ClCompile Include="ObjGroup.cpp" />
+    <ClCompile Include="ObjLoader.cpp" />
     <ClCompile Include="TextureManager.cpp" />
   </ItemGroup>
   <ItemGroup>
