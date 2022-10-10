@@ -157,7 +157,7 @@ bool HeightMap::GetHeight( IN float x, OUT float& y, IN float z )
 	* | \ |
 	* 1---2
 	*/
-	if ( x < 0.1f || z < 0.0f || x >= nTile || z >= nTile )
+	if ( x < 0.0f || z < 0.0f || x >= nTile || z >= nTile )
 	{
 		y = 0;
 		return false;
