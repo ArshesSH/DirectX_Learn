@@ -25,6 +25,8 @@ public:
 	void SetupMap();
 	void DrawMap();
 	void SetupSurface();
+
+	void SetupHeightMap();
 	
 private:
 	void Draw();
@@ -98,5 +100,9 @@ private:
 	//Map
 	std::vector<class ObjGroup*> pMapGroups;
 	iMap* pMap;
+
+	// HeightMap
+	std::vector<class ObjGroup*> pHeightMapGroups;
+
 };
 

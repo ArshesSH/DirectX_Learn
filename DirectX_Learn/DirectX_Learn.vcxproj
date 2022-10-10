@@ -161,6 +161,7 @@
     <ClInclude Include="Graphics.h" />
     <ClInclude Include="Grid.h" />
     <ClInclude Include="CmHead.h" />
+    <ClInclude Include="HeightMap.h" />
     <ClInclude Include="iMap.h" />
     <ClInclude Include="MainGame.h" />
     <ClInclude Include="Gizmo.h" />
@@ -193,6 +194,7 @@
     <ClCompile Include="Graphics.cpp" />
     <ClCompile Include="Grid.cpp" />
     <ClCompile Include="CmHead.cpp" />
+    <ClCompile Include="HeightMap.cpp" />
     <ClCompile Include="iMap.cpp" />
     <ClCompile Include="MainGame.cpp" />
     <ClCompile Include="Gizmo.cpp" />

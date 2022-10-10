@@ -9,6 +9,7 @@
 #include "ObjLoader.h"
 #include "ObjGroup.h"
 #include "ObjMap.h"
+#include "HeightMap.h"
 
 MainGame::MainGame()
 	:
@@ -36,12 +37,17 @@ void MainGame::Setup()
 	SetupLight();
 
 	pGrid->Setup();
+
+	SetupHeightMap();
+
 	pCubePC->Setup();
 	pCubeMan->Setup();
 	//SetupObj();
 
-	SetupMap();
-	SetupSurface();
+	//SetupMap();
+	//SetupSurface();
+
+
 
 	pCam->Setup(&pCubeMan->GetPosition());
 
@@ -204,6 +210,14 @@ void MainGame::SetupSurface()
 	pMap = new ObjMap( (char*)"Data/Models", (char*)"map_surface.obj", &matWorld );
 }
 
+void MainGame::SetupHeightMap()
+{
+	HeightMap* pHeightMap = new HeightMap;
+
+	pHeightMap->Setup( "Data/Models/HeightMapData/", "HeightMap.raw", "terrain.jpg" );
+	pMap = pHeightMap;
+}
+
 void MainGame::Draw()
 {
 	
@@ -216,7 +230,10 @@ void MainGame::Draw()
 
 	// Draw Grid
 	{
-		pGrid->Draw();
+		if ( pGrid )
+		{
+			pGrid->Draw();
+		}
 	}
 
 	// Draw Cube
@@ -224,9 +241,20 @@ void MainGame::Draw()
 		//pCubePC->Render();
 	}
 
+	// DrawHeightMap();
+	{
+		if ( pMap )
+		{
+			pMap->Render();
+		}
+	}
+
 	// Draw CubeMan
 	{
-		pCubeMan->Draw();
+		if ( pCubeMan )
+		{
+			pCubeMan->Draw();
+		}
 	}
 
 	//Draw TestTexture
@@ -241,7 +269,7 @@ void MainGame::Draw()
 
 	//Draw Map
 	{
-		DrawMap();
+		//DrawMap();
 	}
 
 }
