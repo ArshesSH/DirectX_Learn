@@ -28,6 +28,9 @@
     <Filter Include="HeightMap">
       <UniqueIdentifier>{dc0a349e-c205-4a68-a694-2ce55765b85c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="FrustumCulling">
+      <UniqueIdentifier>{33cb0195-79f7-4510-8f76-dddf9d5ce1ca}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -117,14 +120,17 @@
     <ClInclude Include="ObjLoader.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="HeightMap.h">
+      <Filter>HeightMap</Filter>
+    </ClInclude>
     <ClInclude Include="iMap.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>Map</Filter>
     </ClInclude>
     <ClInclude Include="ObjMap.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>Map</Filter>
     </ClInclude>
-    <ClInclude Include="HeightMap.h">
-      <Filter>헤더 파일</Filter>
+    <ClInclude Include="Frustum.h">
+      <Filter>FrustumCulling</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -203,14 +209,17 @@
     <ClCompile Include="ObjLoader.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="iMap.cpp">
-      <Filter>소스 파일</Filter>
+    <ClCompile Include="HeightMap.cpp">
+      <Filter>HeightMap</Filter>
     </ClCompile>
     <ClCompile Include="ObjMap.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>Map</Filter>
     </ClCompile>
-    <ClCompile Include="HeightMap.cpp">
-      <Filter>소스 파일</Filter>
+    <ClCompile Include="iMap.cpp">
+      <Filter>Map</Filter>
+    </ClCompile>
+    <ClCompile Include="Frustum.cpp">
+      <Filter>FrustumCulling</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

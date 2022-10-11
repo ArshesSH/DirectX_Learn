@@ -10,6 +10,7 @@
 #include "ObjGroup.h"
 #include "ObjMap.h"
 #include "HeightMap.h"
+#include "Frustum.h"
 
 MainGame::MainGame()
 	:
@@ -18,12 +19,14 @@ MainGame::MainGame()
 	pCam( std::make_unique<Camera>() ),
 	pCubeMan( std::make_unique<CubeMan>() ),
 	pTexture( nullptr ),
-	pMap( nullptr )
+	pMap( nullptr ),
+	pFrustum(nullptr)
 {
 }
 
 MainGame::~MainGame()
 {
+	SAFE_DELETE( pFrustum );
 	SAFE_DELETE( pMap );
 	SAFE_RELEASE( pTexture );
 	g_pDeviceManager->Destroy();
@@ -39,6 +42,8 @@ void MainGame::Setup()
 	pGrid->Setup();
 
 	SetupHeightMap();
+
+	SetupFrustum();
 
 	pCubePC->Setup();
 	pCubeMan->Setup();
@@ -62,10 +67,19 @@ void MainGame::Update()
 	//{
 	//	pCubePC->Update();
 	//}
+
+	/*
 	if ( pCubeMan )
 	{
 		pCubeMan->Update(pMap);
 	}
+	*/
+
+	if ( pFrustum )
+	{
+		pFrustum->Update();
+	}
+
 
 	// 카메라는 항상 나중에 업데이트
 	if ( pCam )
@@ -92,6 +106,25 @@ void MainGame::WndProc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam )
 	if ( pCam )
 	{
 		pCam->WndProc( hWnd, message, wParam, lParam );
+	}
+
+	switch ( message )
+	{
+	case WM_MBUTTONDOWN:
+		{
+			for ( const auto& pSphere : frustumSpheres )
+			{
+				if ( pFrustum->IsIn( pSphere.get() ) )
+				{
+					pSphere->isPicked = true;
+				}
+				else
+				{
+					pSphere->isPicked = false;
+				}
+			}
+		}
+		break;
 	}
 }
 
@@ -218,6 +251,55 @@ void MainGame::SetupHeightMap()
 	pMap = pHeightMap;
 }
 
+void MainGame::SetupFrustum()
+{
+	D3DXCreateSphere( g_pD3DDevice, 0.5f, 10, 10, &pFrustumSphereMesh, nullptr );
+	for ( int z = -20; z <= 20; ++z )
+	{
+		for ( int y = -20; y <= 20; ++y )
+		{
+			for ( int x = -20; x <= 20; ++x )
+			{
+				std::unique_ptr<SPHERE> pSphere = std::make_unique<SPHERE>();
+				pSphere->radius = 0.5f;
+				pSphere->centerPos = D3DXVECTOR3( (float)x, (float)y, (float)z );
+				pSphere->isPicked = true;
+				frustumSpheres.push_back( std::move( pSphere ) );
+			}
+		}
+	}
+
+	ZeroMemory( &frustumMtl, sizeof( D3DMATERIAL9 ) );
+	frustumMtl.Ambient = D3DXCOLOR( 0.7f, 0.2f, 0.7f, 1.0f );
+	frustumMtl.Diffuse = D3DXCOLOR( 0.7f, 0.2f, 0.7f, 1.0f );
+	frustumMtl.Specular = D3DXCOLOR( 0.7f, 0.2f, 0.7f, 1.0f );
+
+	pFrustum = new Frustum;
+	pFrustum->Setup();
+}
+
+void MainGame::DrawFrustum()
+{
+	D3DXMATRIXA16 worldMat;
+	D3DXMatrixIdentity( &worldMat );
+
+	g_pD3DDevice->SetTransform( D3DTS_WORLD, &worldMat );
+
+	for ( const auto& pSphere : frustumSpheres )
+	{
+		if ( pSphere->isPicked )
+		{
+			D3DXMatrixIdentity( &worldMat );
+			worldMat._41 = pSphere->centerPos.x;
+			worldMat._42 = pSphere->centerPos.y;
+			worldMat._43 = pSphere->centerPos.z;
+			g_pD3DDevice->SetTransform( D3DTS_WORLD, &worldMat );
+			g_pD3DDevice->SetMaterial( &frustumMtl );
+			pFrustumSphereMesh->DrawSubset( 0 );
+		}
+	}
+}
+
 void MainGame::Draw()
 {
 	
@@ -228,6 +310,7 @@ void MainGame::Draw()
 	}
 	*/
 
+	/*
 	// Draw Grid
 	{
 		if ( pGrid )
@@ -271,5 +354,13 @@ void MainGame::Draw()
 	{
 		//DrawMap();
 	}
+	*/
 
+	//Draw Frustum
+	{
+		if ( pFrustum )
+		{
+			DrawFrustum();
+		}
+	}
 }

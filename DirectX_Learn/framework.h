@@ -102,6 +102,20 @@ struct PT_VERTEX	//PointAndTexture
 	};
 };
 
+struct SPHERE
+{
+	SPHERE()
+		:
+		radius( 0.0f ),
+		centerPos( 0.0f, 0.0f, 0.0f ),
+		isPicked( false )
+	{}
+
+	float radius;
+	D3DXVECTOR3 centerPos;
+	bool isPicked;
+};
+
 
 #include "DeviceManager.h"
 #include "Object.h"

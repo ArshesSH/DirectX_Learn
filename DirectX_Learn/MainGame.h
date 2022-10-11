@@ -28,6 +28,9 @@ public:
 
 	void SetupHeightMap();
 	
+	void SetupFrustum();
+	void DrawFrustum();
+	
 private:
 	void Draw();
 
@@ -103,6 +106,13 @@ private:
 
 	// HeightMap
 	std::vector<class ObjGroup*> pHeightMapGroups;
+
+	// Frustum Culling
+	//std::vector<SPHERE*> frustumSpheres;
+	std::vector<std::unique_ptr<SPHERE>> frustumSpheres;
+	LPD3DXMESH pFrustumSphereMesh;
+	D3DMATERIAL9 frustumMtl;
+	class Frustum* pFrustum;
 
 };
 

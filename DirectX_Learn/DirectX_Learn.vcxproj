@@ -158,6 +158,7 @@
     <ClInclude Include="DeviceManager.h" />
     <ClInclude Include="DirectX_Learn.h" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="Frustum.h" />
     <ClInclude Include="Graphics.h" />
     <ClInclude Include="Grid.h" />
     <ClInclude Include="CmHead.h" />
@@ -191,6 +192,7 @@
     <ClCompile Include="CubePNT.cpp" />
     <ClCompile Include="DeviceManager.cpp" />
     <ClCompile Include="DirectX_Learn.cpp" />
+    <ClCompile Include="Frustum.cpp" />
     <ClCompile Include="Graphics.cpp" />
     <ClCompile Include="Grid.cpp" />
     <ClCompile Include="CmHead.cpp" />
